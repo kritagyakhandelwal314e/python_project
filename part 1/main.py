@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 from typing import Optional
 
 app = FastAPI()
@@ -17,13 +17,17 @@ class IdGenerator():
 
 id_generator = IdGenerator()
 
+class Phone(BaseModel):
+  country_code: str = Field('+91', max_length=3, regex=r'^\+[0-9][0-9]')
+  number: str
+
 class Provider(BaseModel):
   id: int
   active: bool
   name: str
   qualification: str
   speciality: str
-  phone: str
+  phone: Phone
   department: str
   organisation: str
   location: str
