@@ -1,0 +1,83 @@
+[
+  {
+    "id": 1,
+    "active": false,
+    "name": "string",
+    "qualification": [
+      "bachelors"
+    ],
+    "speciality": [
+      "Orthology"
+    ],
+    "phone": {
+      "country_code": "+91",
+      "number": "9191919191"
+    },
+    "department": "IT",
+    "organisation": {
+      "name": "string",
+      "location": "string"
+    },
+    "address": {
+      "street_address": "string",
+      "city": "New Delhi",
+      "state": "Delhi",
+      "country": "India",
+      "zip_code": "111111"
+    }
+  },
+  {
+    "id": 2,
+    "active": false,
+    "name": "string",
+    "qualification": [
+      "bachelors"
+    ],
+    "speciality": [
+      "Orthology"
+    ],
+    "phone": {
+      "country_code": "+91",
+      "number": "12121212"
+    },
+    "department": "IT",
+    "organisation": {
+      "name": "string",
+      "location": "string"
+    },
+    "address": {
+      "street_address": "string",
+      "city": "New Delhi",
+      "state": "Delhi",
+      "country": "India",
+      "zip_code": "110052"
+    }
+  },
+  {
+    "id": 4,
+    "active": true,
+    "name": "string",
+    "qualification": [
+      "bachelors"
+    ],
+    "speciality": [
+      "Orthology"
+    ],
+    "phone": {
+      "country_code": "+91",
+      "number": "12121212"
+    },
+    "department": "IT",
+    "organisation": {
+      "name": "string",
+      "location": "string"
+    },
+    "address": {
+      "street_address": "string",
+      "city": "New Delhi",
+      "state": "Delhi",
+      "country": "India",
+      "zip_code": "110052"
+    }
+  }
+]
