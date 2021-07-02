@@ -181,7 +181,6 @@ async def put_provider(provider_id: int, provider: Provider, background_tasks: B
 
 @app.patch('/providers/{provider_id}')
 async def patch_provider(provider_id: int, provider: ProviderAllOptional, background_tasks: BackgroundTasks):
-  #TODO: Debug Patch Route
   idx = -1
   for i, p in enumerate(providers):
     if p['id'] == provider_id:

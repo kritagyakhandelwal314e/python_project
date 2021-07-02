@@ -160,7 +160,6 @@ async def put_provider(provider_id: int, provider: Provider):
 
 @app.patch('/providers/{provider_id}')
 async def patch_provider(provider_id: int, provider: ProviderAllOptional):
-  #TODO: Debug Patch Route
   idx = -1
   for i, p in enumerate(providers):
     if p.id == provider_id:
@@ -173,6 +172,7 @@ async def patch_provider(provider_id: int, provider: ProviderAllOptional):
     updated_provider = stored_provider_model.copy(update=update_data)
     updated_provider.id = provider_id
     providers[idx] = updated_provider
+    return
   return JSONResponse(status_code=404, content={'message': 'No provider exist with this specification'})
 
 @app.delete('/providers/{provider_id}')
