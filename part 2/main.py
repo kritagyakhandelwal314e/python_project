@@ -8,7 +8,21 @@ from starlette.responses import JSONResponse
 import asyncio
 import json
 
+from fastapi.middleware.cors import CORSMiddleware
+
 app = FastAPI()
+
+origins = [
+  '*'
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # Generator for generating UUID for provider
 class IdGenerator():
