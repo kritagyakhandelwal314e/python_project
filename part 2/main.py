@@ -141,8 +141,8 @@ def update_file():
 # REST API Endpoints
 
 @app.get('/providers')
-async def get_providers():
-  return providers
+async def get_providers(limit: int = 10, skip: int = 0):
+  return providers[skip : skip + limit] 
 
 @app.post('/providers/', status_code=201)
 async def post_providers(provider: Provider, background_tasks: BackgroundTasks):

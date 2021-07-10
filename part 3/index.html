@@ -9,99 +9,105 @@
     th {
       text-align: center;
     }
-    .no-border {
-      border: 
+    table {
+      border-radius: 5px;
     }
-    table, th, td {
-      border: 1px solid black;
-      border-collapse: collapse;
+    .cust-z-index {
+      z-index: 10;
+    }
+    form {
+      font: 1em sans-serif;
+      max-width: 320px;
+    }
+
+    p > label {
+      display: block;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="number"],
+    textarea,
+    fieldset {
+      width : 100%;
+      border: 1px solid #333;
+      box-sizing: border-box;
+    }
+
+    input:invalid {
+      box-shadow: 0 0 5px 1px red;
+    }
+
+    input:focus:invalid {
+      box-shadow: none;
+    }
+    legend + * {
+      -webkit-margin-top-collapse: separate;
+      margin-top: 10px;
     }
   </style>
   <title>Front-End</title>
 </head>
-<body>
-  <table id="data-table" style="width:100%">
-    <tr>
-      <th rowspan="2">ID</th>
-      <th rowspan="2">active</th>
-      <th rowspan="2">name</th>
-      <th rowspan="2">qualifications</th>
-      <th rowspan="2">specialities</th>
-      <th colspan="2">Phone</th>
-      <th rowspan="2">Department</th>
-      <th colspan="2">Organisation</th>
-      <th colspan="5">address</th>
-    </tr>
-    <tr>
-      <th>Country Code</th>
-      <th>Number</th>
-      <th>name</th>
-      <th>location</th>
-      <th>street address</th>
-      <th>city</th>
-      <th>state</th>
-      <th>country</th>
-      <th>zipcode</th>
-    </tr>
-  </table>
+<body onload="getPage()">
+  <div class="container">
+    <h1 class='text-center display-1 bold bg-dark text-white'>HEALTHCARE PROVIDERS</h1>
+    <div class="justify-content-center">
+      <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center mx-auto">
+        <button class="btn btn-dark" onclick="pageNumChanges(PAGE_NUM-1)">Previous</button>
+        <span class="mx-auto">page size: <button id="page-size-btn" class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+          10
+        </button>
+        <ul class="dropdown-menu mx-auto cust-z-index" aria-labelledby="dropdownMenuButton1">
+          <li class="dropdown-item" onclick="pageSizeChanges(5)">5</li>
+          <li class="dropdown-item" onclick="pageSizeChanges(10)">10</li>
+          <li class="dropdown-item" onclick="pageSizeChanges(20)">20</li> 
+        </ul></span>
+        <span class="mx-auto">page number: <span id="page-number-span">1</span></span>
+        <button class="btn btn-dark" onclick="pageNumChanges(PAGE_NUM+1)">Next</button>
+        </ul>
+      </nav>
+    </div>
+    <table class="rounded table table-striped table-primary table-bordered rounded" id="data-table" style="width:100%">
+      <tr class="table-dark">
+        <th rowspan="2">ID</th>
+        <th rowspan="2">active</th>
+        <th rowspan="2">name</th>
+        <th rowspan="2">qualifications</th>
+        <th rowspan="2">specialities</th>
+        <th colspan="2">Phone</th>
+        <th rowspan="2">Department</th>
+        <th colspan="2">Organisation</th>
+        <th colspan="5">address</th>
+      </tr>
+      <tr class="table-dark">
+        <th>Country Code</th>
+        <th>Number</th>
+        <th>name</th>
+        <th>location</th>
+        <th>street address</th>
+        <th>city</th>
+        <th>state</th>
+        <th>country</th>
+        <th>zipcode</th>
+      </tr>
+    </table>
+    <button class="btn btn-dark" onclick="toggleAddProvider()">Add Provider</button>
+    <div class="post-form container callout" id="post-providers-form" style="visibility: hidden;">
+      <form>
+        <div class="form-floating mb-3">
+          <input type="text" class="form-control" id="provider-name" placeholder="k">
+          <label for="provider-name">Name</label>
+        </div>
+        <div class="form-floating">
+          <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+          <label for="floatingPassword">Password</label>
+        </div>
+      </form>
+    </div>
+  </div>
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-  <script>
-    // const axios = require('axios');
-
-    // Make a request for a user with a given ID
-    axios.get('http://127.0.0.1:8000/providers')
-      .then((response) => {
-        // Find a <table> element with id="myTable":
-        var table = document.getElementById("data-table");
-        // console.log(response.data);
-        response.data.map((dataRow, idx) => {
-          // console.log(dataRow);
-          var row = table.insertRow(idx + 2)
-          var id = row.insertCell(0)
-          id.innerHTML = dataRow.id
-          var active = row.insertCell(1)
-          active.innerHTML = dataRow.active
-          var name = row.insertCell(2)
-          name.innerHTML = dataRow.name
-          var qualifications = row.insertCell(3)
-          qualifications.innerHTML = dataRow.qualification.join(', ')
-          var specialities = row.insertCell(4)
-          specialities.innerHTML = dataRow.speciality.join(', ')
-          var countryCode = row.insertCell(5)
-          countryCode.innerHTML = dataRow.phone.country_code
-          var number = row.insertCell(6)
-          number.innerHTML = dataRow.phone.number
-          var department = row.insertCell(7)
-          department.innerHTML = dataRow.department
-          var orgName = row.insertCell(8)
-          orgName.innerHTML = dataRow.organisation.name
-          var orgLocation = row.insertCell(9)
-          orgLocation.innerHTML = dataRow.organisation.location
-          var streetAddress = row.insertCell(10)
-          streetAddress.innerHTML = dataRow.address.street_address
-          var city = row.insertCell(11)
-          city.innerHTML = dataRow.address.city
-          var state = row.insertCell(12)
-          state.innerHTML = dataRow.address.state
-          var country = row.insertCell(13)
-          country.innerHTML = dataRow.address.country
-          var zipcode = row.insertCell(14)
-          zipcode.innerHTML = dataRow.address.zip_code
-        })
-      })
-      .catch(function (error) {
-        // handle error
-        console.log(error);
-      })
-      .then(function () {
-        // always executed
-      });
-  </script>
-  <!-- <script>
-    fetch('http://127.0.0.1:8000/providers')
-    .then(response => response.json())
-    .then(data => console.log(data))
-  </script> -->
+  <script src="index.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 </html>
