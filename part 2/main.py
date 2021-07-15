@@ -5,6 +5,7 @@ from pydantic import BaseModel, Field
 from typing import Optional, List
 from enum import Enum
 from starlette.responses import JSONResponse
+from datetime import datetime
 import asyncio
 import json
 
@@ -35,35 +36,8 @@ class IdGenerator():
     return self.id
 
 # Custom Enum Types (Validation Utilities)
-class Department(Enum):
-  IT = 'IT'
-  FINANCE = 'FINANCE'
-  MANAGEMENT = 'MANAGEMENT'
 
-class Qualification(Enum):
-  BECHELOR = 'bachelors'
-  MASTERS = 'masters'
-  DOCTORATE = 'doctorate'
 
-class Speciality(Enum):
-  ORTHOLOGY = 'Orthology'
-  CARDIOLOGY = 'Cardiology'
-  DENTIST = 'Dentist'
-
-class Country(Enum):
-  INDIA = 'India'
-  AUSTRALIA = 'Australia'
-
-class City(Enum):
-  NEW_DELHI = 'New Delhi'
-  BENGALURU = 'Bengaluru'
-  MUMBAI = 'Mumbai'
-  CHENNAI = 'Chennai'
-  KOLKATA = 'Kolkata'
-
-class State(Enum):
-  DELHI = 'Delhi'
-  UTTAR_PRADESH = 'Uttar Pradesh'
 
 # Schemas
 class Phone(BaseModel):
@@ -76,31 +50,35 @@ class Organisation(BaseModel):
 
 class Address(BaseModel):
   street_address: str
-  city: City
-  state: State
-  country: Country
+  city: str
+  state: str
+  country: str
   zip_code: str = Field(regex=r'[0-9]{6}')
 
 class Provider(BaseModel):
   id: Optional[int] = None
-  active: Optional[bool] = None
-  name: str
-  qualification: List[Qualification]
-  speciality: List[Speciality]
+  active: Optional[bool] = True
+  name: str = Field(min_length=3, max_length=16)
+  qualification: List[str]
+  speciality: List[str]
   phone: Phone
-  department: Optional[Department]
+  department: Optional[str]
   organisation: Organisation
   address: Address
+  created_at: Optional[datetime]
+  modified_at: Optional[datetime]
 
 class ProviderAllOptional(BaseModel):
   active: Optional[bool] = None
   name: Optional[str]
-  qualification: Optional[List[Qualification]]
-  speciality: Optional[List[Speciality]]
+  qualification: Optional[List[str]]
+  speciality: Optional[List[str]]
   phone: Optional[Phone]
-  department: Optional[Department]
+  department: Optional[str]
   organisation: Optional[Organisation]
   address: Optional[Address]
+  created_at: Optional[datetime]
+  modified_at: Optional[datetime]
 
 providers: List[Provider]
 with open('db.json') as f:
@@ -144,12 +122,14 @@ def update_file():
 async def get_providers(limit: int = 10, skip: int = 0):
   return providers[skip : skip + limit] 
 
-@app.post('/providers/', status_code=201)
+@app.post('/providers', status_code=201)
 async def post_providers(provider: Provider, background_tasks: BackgroundTasks):
   provider.id = next(id_generator)
+  provider.created_at = datetime.now()
+  provider.modified_at = provider.created_at
   providers.append(jsonable_encoder(provider))
   background_tasks.add_task(update_file)
-  return
+  return provider
 
 @app.put('/providers')
 async def put_providers():

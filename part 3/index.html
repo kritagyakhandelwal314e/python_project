@@ -41,10 +41,7 @@
     input:focus:invalid {
       box-shadow: none;
     }
-    legend + * {
-      -webkit-margin-top-collapse: separate;
-      margin-top: 10px;
-    }
+    
   </style>
   <title>Front-End</title>
 </head>
@@ -79,6 +76,7 @@
         <th rowspan="2">Department</th>
         <th colspan="2">Organisation</th>
         <th colspan="5">address</th>
+        <th colspan="2" rowspan="2">Action</th>
       </tr>
       <tr class="table-dark">
         <th>Country Code</th>
@@ -93,15 +91,82 @@
       </tr>
     </table>
     <button class="btn btn-dark" onclick="toggleAddProvider()">Add Provider</button>
-    <div class="post-form container callout" id="post-providers-form" style="visibility: hidden;">
-      <form>
-        <div class="form-floating mb-3">
-          <input type="text" class="form-control" id="provider-name" placeholder="k">
-          <label for="provider-name">Name</label>
+    <div class="post-form" id="post-providers-form" style="visibility: hidden;">
+      <form id="post_form">        
+        <div class="input-group m-4 p-2 border border-2 rounded">
+          <h2>Basic Details</h2>
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="provider-id" placeholder="k" name="id" disabled>
+            <label for="provider-name">id</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="provider-name" placeholder="k" required name="name">
+            <label for="provider-name">Name</label>
+          </div>
+          <div class="form-check form-switch">
+            <input class="form-check-input" value=true type="checkbox" id="provider-active" name="active" onchange="toggleActiveSwitch()" checked>
+            <label class="form-check-label" for="provider-active">Active Provider</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="provider-qualifications" placeholder="k" required name="qualification">
+            <label for="provider-qualifications">Qualifications(, separated)</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="provider-speciality" placeholder="k" required name="speciality">
+            <label for="provider-speciality">Speciality(, separated)</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="provider-department" placeholder="k" name="department">
+            <label for="provider-department">Department</label>
+          </div>
         </div>
-        <div class="form-floating">
-          <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-          <label for="floatingPassword">Password</label>
+        <div class="input-group m-4 p-2 border border-2 rounded">
+          <h2>Phone Number</h2>
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="provider-phone-country-code" placeholder="k" required name="phone_country_code">
+            <label for="provider-phone-country-code">country code</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="provider-phone-number" placeholder="k" required name="phone_number">
+            <label for="provider-phone-number">phone number</label>
+          </div>
+        </div>
+        <div class="input-group m-4 p-2 border border-2 rounded">
+          <h2>Organisation</h2>
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="provider-organisation-name" placeholder="k" required name="org_name">
+            <label for="provider-organisation-name">Name</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="provider-organisation-location" placeholder="k" name="org_location">
+            <label for="provider-organisation-location">Location</label>
+          </div>
+        </div>
+        <div class="input-group m-4 p-2 border border-2 rounded">
+          <h2>Address</h2>
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="provider-address-street-address" placeholder="k" required name="street_address">
+            <label for="provider-address-street-address">street address</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="provider-address-city" placeholder="k" required name="city">
+            <label for="provider-address-city">city</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="provider-address-state" placeholder="k" required name="state">
+            <label for="provider-address-state">state</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="provider-address-country" placeholder="k" required name="country">
+            <label for="provider-address-country">country</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="provider-address-zipcode" placeholder="k" required name="zipcode">
+            <label for="provider-address-zipcode">zipcode</label>
+          </div>
+        </div>
+        <div class="input-group m-4 p-2">
+          <button id="edit_method" class="btn btn-dark" onclick="postOrPutProvider()" value="post">Submit</button>
         </div>
       </form>
     </div>

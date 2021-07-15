@@ -49,6 +49,10 @@ const getPage = () => {
       country.innerHTML = dataRow.address.country
       var zipcode = row.insertCell(14)
       zipcode.innerHTML = dataRow.address.zip_code
+      var viewButton = row.insertCell(15)
+      viewButton.innerHTML = `<button class="btn btn-dark" onclick="viewIndividual(${dataRow.id})">VIEW</button>`
+      var editButton = row.insertCell(16)
+      editButton.innerHTML = `<button class="btn btn-dark" onclick="toggleEditProvider(${dataRow.id})">EDIT</button>`
     })
   })
   .catch(function (error) {
@@ -58,6 +62,137 @@ const getPage = () => {
   .then(function () {
     // always executed
   });
+}
+
+document.getElementById("post_form").addEventListener('submit', (event) => {
+  event.preventDefault();
+});
+
+const postOrPutProvider = () => {
+  providerBody = {};
+  post = (document.getElementById("edit_method").value === "post")
+  form = document.getElementById("post_form");
+  if(form.elements["name"].value.length > 2) {
+    providerBody["name"] = form.elements["name"].value;
+  } else {
+    return alert("Name length should be greater than equal to 3 and less than equal to 16")
+  }
+  console.log(form.elements["active"].value);
+  providerBody["active"] = form.elements["active"].checked;
+  if(form.elements["qualification"].value.length > 0) {
+    providerBody["qualification"] = form.elements["qualification"].value.split(", ")
+  } else {
+    return alert("Please provide atleast one qualification")
+  }
+  if(form.elements["speciality"].value.length > 0) {
+    providerBody["speciality"] = form.elements["speciality"].value.split(", ")
+  } else {
+    return alert("Please provide atleast one speciality")
+  }
+  providerBody["department"] = form.elements["department"].value
+  providerBody["phone"] = {}
+  if(/^(\+[0-9][0-9])$/.test(form.elements["phone_country_code"].value)) {
+    providerBody["phone"]["country_code"] = form.elements["phone_country_code"].value
+  } else  {
+    return alert("country code is invalid")
+  }
+  if(/^([0-9]{8,10})$/.test(form.elements["phone_number"].value)) {
+    providerBody["phone"]["number"] = form.elements["phone_number"].value
+  } else  {
+    return alert("phone number is invalid")
+  }
+  providerBody["organisation"] = {}
+  if(form.elements["org_name"].value.length > 0) {
+    providerBody["organisation"]["name"] = form.elements["org_name"].value
+  } else {
+    return alert("please provide organisation name")
+  }
+  providerBody["organisation"]["location"] = form.elements["org_location"].value
+  providerBody["address"] = {}
+  if(form.elements["street_address"].value.length > 0) {
+    providerBody["address"]["street_address"] = form.elements["street_address"].value
+  } else {
+    return alert("please provide street address")
+  }
+  if(form.elements["city"].value.length > 0) {
+    providerBody["address"]["city"] = form.elements["city"].value
+  } else {
+    return alert("please provide city")
+  }
+  if(form.elements["state"].value.length > 0) {
+    providerBody["address"]["state"] = form.elements["state"].value
+  } else {
+    return alert("please provide state")
+  }
+  if(form.elements["country"].value.length > 0) {
+    providerBody["address"]["country"] = form.elements["country"].value
+  } else {
+    return alert("please provide country")
+  }
+  if(/^([0-9]{6})$/.test(form.elements["zipcode"].value)) {
+    providerBody["address"]["zip_code"] = form.elements["zipcode"].value
+  } else  {
+    return alert("zipcode is invalid")
+  }
+  if(post) {
+    axios.post('http://127.0.0.1:8000/providers', providerBody)
+    .then(function (response) {
+      console.log(response);
+    })
+    .catch((error) => {
+      alert(error.message)
+    })
+  } else {
+    providerBody.id = form.elements["id"].value;
+    axios.put(`http://127.0.0.1:8000/providers/${providerBody.id}`, providerBody)
+    .then(function (response) {
+      console.log(response);
+    })
+    .catch((error) => {
+      alert(error.message)
+    })
+  }
+  console.log(providerBody);
+}
+
+const viewIndividual = (providerId) => {
+  axios.get(`http://127.0.0.1:8000/providers/${providerId}`)
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    alert(error?.message);
+  })
+}
+
+const editIndividual = (providerId) => {
+  console.log("editIndividual");
+  axios.get(`http://127.0.0.1:8000/providers/${providerId}`)
+  .then((response) => {
+    console.log(response.data);
+    providerBody = response.data;
+    form = document.getElementById("post_form");
+    form.reset();
+    form.elements["id"].value = providerBody.id;
+    form.elements["name"].value = providerBody.name;
+    providerBody.active ? form.elements["active"].checked = true : form.elements["active"].checked = false;
+    form.elements["qualification"].value = providerBody.qualification.join(", ");
+    form.elements["speciality"].value = providerBody.speciality.join(", ");
+    form.elements["department"].value = providerBody.department;
+    form.elements["phone_country_code"].value = providerBody.phone.country_code;
+    form.elements["phone_number"].value = providerBody.phone.number;
+    form.elements["org_name"].value = providerBody.organisation.name;
+    form.elements["org_location"].value = providerBody.organisation.location;
+    form.elements["street_address"].value = providerBody.address.street_address;
+    form.elements["city"].value = providerBody.address.city;
+    form.elements["state"].value = providerBody.address.state;
+    form.elements["country"].value = providerBody.address.country;
+    form.elements["zipcode"].value = providerBody.address.zip_code;
+    showElem(document.getElementById("post-providers-form"))
+  })
+  // .catch((error) => {
+  //   alert(error?.message);
+  // })
 }
 
 const pageNumChanges = (pageNum) => {
@@ -89,6 +224,24 @@ const toggleVisibility = (ele) => {
   else showElem(ele)
 }
 
-const toggleAddProvider = () => {
+const toggleEditProvider = (provider_id) => {
+  document.getElementById("post_form").reset();
+  document.getElementById("edit_method").value = "put";
   toggleVisibility(document.getElementById("post-providers-form"))
+  if(isVisible(document.getElementById("post-providers-form"))) {
+    editIndividual(provider_id)
+  }
+}
+
+const toggleAddProvider = () => {
+  document.getElementById("post_form").reset();
+  document.getElementById("edit_method").value = "post";
+  toggleVisibility(document.getElementById("post-providers-form"))
+}
+
+const toggleActiveSwitch = () => {
+  activeSwitch = document.getElementById("provider-active");
+  if(activeSwitch.value === "true") activeSwitch.value = "false"
+  else activeSwitch.value = "true"
+  console.log(activeSwitch.value);
 }

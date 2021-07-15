@@ -2,391 +2,123 @@
   {
     "id": 1,
     "active": false,
-    "name": "string",
+    "name": "kritagya",
     "qualification": [
-      "bachelors"
+      "btech"
     ],
     "speciality": [
-      "Orthology"
+      "python",
+      "node"
     ],
     "phone": {
       "country_code": "+91",
-      "number": "9191919191"
+      "number": "8178638856"
     },
-    "department": "IT",
+    "department": "dept",
     "organisation": {
-      "name": "string",
-      "location": "string"
+      "name": "314e",
+      "location": "begaluru VR mall"
     },
     "address": {
-      "street_address": "string",
-      "city": "New Delhi",
-      "state": "Delhi",
-      "country": "India",
-      "zip_code": "111111"
-    }
-  },
-  {
-    "id": 2,
-    "active": false,
-    "name": "string",
-    "qualification": [
-      "bachelors"
-    ],
-    "speciality": [
-      "Orthology",
-      "Zoology"
-    ],
-    "phone": {
-      "country_code": "+91",
-      "number": "12121212"
-    },
-    "department": "IT",
-    "organisation": {
-      "name": "string",
-      "location": "string"
-    },
-    "address": {
-      "street_address": "string",
+      "street_address": "A-332, shastri nagar",
       "city": "New Delhi",
       "state": "Delhi",
       "country": "India",
       "zip_code": "110052"
-    }
+    },
+    "created_at": null,
+    "modified_at": null
+  },
+  {
+    "id": 2,
+    "active": true,
+    "name": "yash",
+    "qualification": [
+      "btech"
+    ],
+    "speciality": [
+      "python",
+      "node",
+      "devops"
+    ],
+    "phone": {
+      "country_code": "+91",
+      "number": "8178638856"
+    },
+    "department": "devops",
+    "organisation": {
+      "name": "314e",
+      "location": "begaluru"
+    },
+    "address": {
+      "street_address": "A-332, shastri nagar",
+      "city": "New Delhi",
+      "state": "Delhi",
+      "country": "India",
+      "zip_code": "110052"
+    },
+    "created_at": "2021-07-14T23:59:12.451647",
+    "modified_at": "2021-07-14T23:59:12.451647"
+  },
+  {
+    "id": 3,
+    "active": true,
+    "name": "kritagya",
+    "qualification": [
+      "btech"
+    ],
+    "speciality": [
+      "python",
+      "node"
+    ],
+    "phone": {
+      "country_code": "+91",
+      "number": "8178638856"
+    },
+    "department": "",
+    "organisation": {
+      "name": "314e",
+      "location": ""
+    },
+    "address": {
+      "street_address": "A-332, shastri nagar",
+      "city": "New Delhi",
+      "state": "Delhi",
+      "country": "India",
+      "zip_code": "110052"
+    },
+    "created_at": "2021-07-15T10:01:11.995852",
+    "modified_at": "2021-07-15T10:01:11.995852"
   },
   {
     "id": 4,
     "active": true,
-    "name": "string",
+    "name": "yash",
     "qualification": [
-      "bachelors"
+      "btech"
     ],
     "speciality": [
-      "Orthology"
+      "python",
+      "node",
+      "devops"
     ],
     "phone": {
       "country_code": "+91",
-      "number": "12121212"
+      "number": "8178638856"
     },
-    "department": "IT",
+    "department": "devops",
     "organisation": {
-      "name": "string",
-      "location": "string"
+      "name": "314e",
+      "location": "begaluru"
     },
     "address": {
-      "street_address": "string",
+      "street_address": "A-332, shastri nagar",
       "city": "New Delhi",
       "state": "Delhi",
       "country": "India",
       "zip_code": "110052"
-    }
-  },
-  {
-    "id": 5,
-    "active": true,
-    "name": "string",
-    "qualification": [
-      "bachelors"
-    ],
-    "speciality": [
-      "Orthology",
-      "Dentist"
-    ],
-    "phone": {
-      "country_code": "+91",
-      "number": "99991111"
     },
-    "department": "IT",
-    "organisation": {
-      "name": "string",
-      "location": "string"
-    },
-    "address": {
-      "street_address": "string",
-      "city": "New Delhi",
-      "state": "Delhi",
-      "country": "India",
-      "zip_code": "110052"
-    }
-  },
-  {
-    "id": 6,
-    "active": true,
-    "name": "string",
-    "qualification": [
-      "bachelors"
-    ],
-    "speciality": [
-      "Orthology",
-      "Dentist"
-    ],
-    "phone": {
-      "country_code": "+91",
-      "number": "99991111"
-    },
-    "department": "IT",
-    "organisation": {
-      "name": "string",
-      "location": "string"
-    },
-    "address": {
-      "street_address": "string",
-      "city": "New Delhi",
-      "state": "Delhi",
-      "country": "India",
-      "zip_code": "110052"
-    }
-  },
-  {
-    "id": 7,
-    "active": true,
-    "name": "string",
-    "qualification": [
-      "bachelors"
-    ],
-    "speciality": [
-      "Orthology",
-      "Dentist"
-    ],
-    "phone": {
-      "country_code": "+91",
-      "number": "99991111"
-    },
-    "department": "IT",
-    "organisation": {
-      "name": "string",
-      "location": "string"
-    },
-    "address": {
-      "street_address": "string",
-      "city": "New Delhi",
-      "state": "Delhi",
-      "country": "India",
-      "zip_code": "110052"
-    }
-  },
-  {
-    "id": 8,
-    "active": true,
-    "name": "string",
-    "qualification": [
-      "bachelors"
-    ],
-    "speciality": [
-      "Orthology",
-      "Dentist"
-    ],
-    "phone": {
-      "country_code": "+91",
-      "number": "99991111"
-    },
-    "department": "IT",
-    "organisation": {
-      "name": "string",
-      "location": "string"
-    },
-    "address": {
-      "street_address": "string",
-      "city": "New Delhi",
-      "state": "Delhi",
-      "country": "India",
-      "zip_code": "110052"
-    }
-  },
-  {
-    "id": 9,
-    "active": true,
-    "name": "string",
-    "qualification": [
-      "bachelors"
-    ],
-    "speciality": [
-      "Orthology",
-      "Dentist"
-    ],
-    "phone": {
-      "country_code": "+91",
-      "number": "99991111"
-    },
-    "department": "IT",
-    "organisation": {
-      "name": "string",
-      "location": "string"
-    },
-    "address": {
-      "street_address": "string",
-      "city": "New Delhi",
-      "state": "Delhi",
-      "country": "India",
-      "zip_code": "110052"
-    }
-  },
-  {
-    "id": 10,
-    "active": true,
-    "name": "string",
-    "qualification": [
-      "bachelors"
-    ],
-    "speciality": [
-      "Orthology",
-      "Dentist"
-    ],
-    "phone": {
-      "country_code": "+91",
-      "number": "99991111"
-    },
-    "department": "IT",
-    "organisation": {
-      "name": "string",
-      "location": "string"
-    },
-    "address": {
-      "street_address": "string",
-      "city": "New Delhi",
-      "state": "Delhi",
-      "country": "India",
-      "zip_code": "110052"
-    }
-  },
-  {
-    "id": 11,
-    "active": true,
-    "name": "string",
-    "qualification": [
-      "bachelors"
-    ],
-    "speciality": [
-      "Orthology",
-      "Dentist"
-    ],
-    "phone": {
-      "country_code": "+91",
-      "number": "99991111"
-    },
-    "department": "IT",
-    "organisation": {
-      "name": "string",
-      "location": "string"
-    },
-    "address": {
-      "street_address": "string",
-      "city": "New Delhi",
-      "state": "Delhi",
-      "country": "India",
-      "zip_code": "110052"
-    }
-  },
-  {
-    "id": 12,
-    "active": true,
-    "name": "string",
-    "qualification": [
-      "bachelors"
-    ],
-    "speciality": [
-      "Orthology",
-      "Dentist"
-    ],
-    "phone": {
-      "country_code": "+91",
-      "number": "99991111"
-    },
-    "department": "IT",
-    "organisation": {
-      "name": "string",
-      "location": "string"
-    },
-    "address": {
-      "street_address": "string",
-      "city": "New Delhi",
-      "state": "Delhi",
-      "country": "India",
-      "zip_code": "110052"
-    }
-  },
-  {
-    "id": 13,
-    "active": true,
-    "name": "string",
-    "qualification": [
-      "bachelors"
-    ],
-    "speciality": [
-      "Orthology",
-      "Dentist"
-    ],
-    "phone": {
-      "country_code": "+91",
-      "number": "99991111"
-    },
-    "department": "IT",
-    "organisation": {
-      "name": "string",
-      "location": "string"
-    },
-    "address": {
-      "street_address": "string",
-      "city": "New Delhi",
-      "state": "Delhi",
-      "country": "India",
-      "zip_code": "110052"
-    }
-  },
-  {
-    "id": 14,
-    "active": true,
-    "name": "string",
-    "qualification": [
-      "bachelors"
-    ],
-    "speciality": [
-      "Orthology",
-      "Dentist"
-    ],
-    "phone": {
-      "country_code": "+91",
-      "number": "99991111"
-    },
-    "department": "IT",
-    "organisation": {
-      "name": "string",
-      "location": "string"
-    },
-    "address": {
-      "street_address": "string",
-      "city": "New Delhi",
-      "state": "Delhi",
-      "country": "India",
-      "zip_code": "110052"
-    }
-  },
-  {
-    "id": 15,
-    "active": true,
-    "name": "string",
-    "qualification": [
-      "bachelors"
-    ],
-    "speciality": [
-      "Orthology",
-      "Dentist"
-    ],
-    "phone": {
-      "country_code": "+91",
-      "number": "99991111"
-    },
-    "department": "IT",
-    "organisation": {
-      "name": "string",
-      "location": "string"
-    },
-    "address": {
-      "street_address": "string",
-      "city": "New Delhi",
-      "state": "Delhi",
-      "country": "India",
-      "zip_code": "110052"
-    }
+    "created_at": "2021-07-15T10:33:02.999056",
+    "modified_at": "2021-07-15T10:33:02.999056"
   }
 ]
