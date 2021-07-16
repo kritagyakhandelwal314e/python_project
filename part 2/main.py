@@ -80,6 +80,7 @@ class ProviderAllOptional(BaseModel):
   created_at: Optional[datetime]
   modified_at: Optional[datetime]
 
+# making data persistent
 providers: List[Provider]
 with open('db.json') as f:
   data = f.read()
