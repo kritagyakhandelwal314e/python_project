@@ -168,6 +168,7 @@ async def put_provider(provider_id: int, provider: Provider, background_tasks: B
       break
   if idx != -1:
     provider.id = provider_id
+    provider.modified_at = datetime.now()
     providers[idx] = jsonable_encoder(provider)
     background_tasks.add_task(update_file)
     return

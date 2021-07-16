@@ -6,8 +6,7 @@ const getPage = () => {
   .then((response) => {
     // Find a <table> element with id="myTable":
     var table = document.getElementById("data-table");
-    // console.log(response.data);
-    // table.deleteRow(2);
+    // clearing the table rows
     while(true) {
       // console.log(i);
       try{
@@ -49,10 +48,10 @@ const getPage = () => {
       country.innerHTML = dataRow.address.country
       var zipcode = row.insertCell(14)
       zipcode.innerHTML = dataRow.address.zip_code
-      var viewButton = row.insertCell(15)
-      viewButton.innerHTML = `<button class="btn btn-dark" onclick="viewIndividual(${dataRow.id})">VIEW</button>`
-      var editButton = row.insertCell(16)
-      editButton.innerHTML = `<button class="btn btn-dark" onclick="toggleEditProvider(${dataRow.id})">EDIT</button>`
+      var editButton = row.insertCell(15)
+      editButton.innerHTML = `<button class="btn btn-primary" onclick="toggleEditProvider(${dataRow.id})">EDIT</button>`
+      var viewButton = row.insertCell(16)
+      viewButton.innerHTML = `<button class="btn btn-danger" onclick="deleteIndividual(${dataRow.id})">DELETE</button>`
     })
   })
   .catch(function (error) {
@@ -165,12 +164,23 @@ const viewIndividual = (providerId) => {
   })
 }
 
+const deleteIndividual = (providerId) => {
+  axios.delete(`http://127.0.0.1:8000/providers/${providerId}`)
+  .then((response) => {
+    console.log(response.data);
+  })
+  .catch((error) => {
+    alert(error?.message);
+  })
+}
+
 const editIndividual = (providerId) => {
   console.log("editIndividual");
   axios.get(`http://127.0.0.1:8000/providers/${providerId}`)
   .then((response) => {
     console.log(response.data);
     providerBody = response.data;
+    // populating the form by the response data
     form = document.getElementById("post_form");
     form.reset();
     form.elements["id"].value = providerBody.id;
@@ -188,11 +198,11 @@ const editIndividual = (providerId) => {
     form.elements["state"].value = providerBody.address.state;
     form.elements["country"].value = providerBody.address.country;
     form.elements["zipcode"].value = providerBody.address.zip_code;
-    showElem(document.getElementById("post-providers-form"))
+    showElem(document.getElementById("post-providers-form"));
   })
-  // .catch((error) => {
-  //   alert(error?.message);
-  // })
+  .catch((error) => {
+    alert(error?.message);
+  })
 }
 
 const pageNumChanges = (pageNum) => {

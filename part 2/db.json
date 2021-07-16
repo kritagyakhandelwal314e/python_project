@@ -48,7 +48,7 @@
     "department": "devops",
     "organisation": {
       "name": "314e",
-      "location": "begaluru"
+      "location": "begaluru VR mall"
     },
     "address": {
       "street_address": "A-332, shastri nagar",
@@ -57,8 +57,8 @@
       "country": "India",
       "zip_code": "110052"
     },
-    "created_at": "2021-07-14T23:59:12.451647",
-    "modified_at": "2021-07-14T23:59:12.451647"
+    "created_at": null,
+    "modified_at": "2021-07-16T05:35:52.988812"
   },
   {
     "id": 3,
@@ -87,29 +87,28 @@
       "country": "India",
       "zip_code": "110052"
     },
-    "created_at": "2021-07-15T10:01:11.995852",
-    "modified_at": "2021-07-15T10:01:11.995852"
+    "created_at": null,
+    "modified_at": "2021-07-16T05:29:41.850617"
   },
   {
     "id": 4,
     "active": true,
-    "name": "yash",
+    "name": "abcdef",
     "qualification": [
       "btech"
     ],
     "speciality": [
       "python",
-      "node",
-      "devops"
+      "node"
     ],
     "phone": {
       "country_code": "+91",
       "number": "8178638856"
     },
-    "department": "devops",
+    "department": "dept",
     "organisation": {
       "name": "314e",
-      "location": "begaluru"
+      "location": "begaluru VR mall"
     },
     "address": {
       "street_address": "A-332, shastri nagar",
@@ -118,7 +117,7 @@
       "country": "India",
       "zip_code": "110052"
     },
-    "created_at": "2021-07-15T10:33:02.999056",
-    "modified_at": "2021-07-15T10:33:02.999056"
+    "created_at": "2021-07-16T05:31:10.459275",
+    "modified_at": "2021-07-16T05:31:10.459275"
   }
 ]
